@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beezy – Your Trusted Partner for Home Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #F5C518;
+      --black: #0A0A0A;
+      --white: #FFFFFF;
+      --gray: #F4F4F2;
+      --mid: #888;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--white); color: var(--black); overflow-x: hidden; }
+
+    /* ─── NAV ─── */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 60px;
+      background: var(--white); border-bottom: 1px solid #eee;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-family: var(--font-head); font-weight: 800; font-size: 20px; letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; text-decoration: none; color: var(--black); letter-spacing: 0.5px; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--yellow); }
+    .btn-book {
+      background: var(--yellow); color: var(--black); border: none;
+      padding: 10px 20px; font-family: var(--font-body); font-weight: 700;
+      font-size: 13px; cursor: pointer; letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+    .btn-book:hover { background: #e0b000; }
+
+    /* ─── HERO ─── */
+    .hero {
+      display: grid; grid-template-columns: 1fr 380px;
+      gap: 40px; align-items: center;
+      padding: 80px 48px 80px;
+      min-height: 520px;
+    }
+    .hero-title {
+      font-family: var(--font-head); font-size: clamp(48px, 6vw, 80px);
+      font-weight: 800; line-height: 1.0; letter-spacing: -2px; color: var(--black);
+    }
+    .hero-title .highlight {
+      background: var(--yellow); padding: 0 6px; display: inline-block;
+    }
+    .hero-sub {
+      margin-top: 20px; font-size: 15px; color: #555; max-width: 420px; line-height: 1.7;
+    }
+    .hero-ctas { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--black); color: var(--white); padding: 13px 22px;
+      font-weight: 700; font-size: 13px; cursor: pointer; border: none;
+      text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--font-body);
+    }
+    .btn-secondary {
+      background: transparent; color: var(--black); padding: 13px 22px;
+      font-weight: 700; font-size: 13px; cursor: pointer;
+      border: 2px solid var(--black); text-transform: uppercase;
+      letter-spacing: 0.5px; font-family: var(--font-body);
+    }
+    .btn-secondary:hover { background: var(--black); color: var(--white); }
+    .hero-stats { display: flex; gap: 32px; margin-top: 36px; }
+    .hero-stats div { font-family: var(--font-head); }
+    .hero-stats strong { font-size: 26px; font-weight: 800; display: block; }
+    .hero-stats span { font-size: 12px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* ─── BOOKING CARD ─── */
+    .booking-card {
+      background: var(--white); border: 1.5px solid #e0e0e0;
+      padding: 28px; box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+    }
+    .bc-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--mid); margin-bottom: 6px; }
+    .bc-step { font-size: 11px; color: var(--mid); text-align: right; }
+    .bc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .bc-service { font-family: var(--font-head); font-weight: 700; font-size: 17px; }
+    .bc-live { background: var(--yellow); color: var(--black); font-size: 10px; font-weight: 700; padding: 3px 8px; letter-spacing: 1px; }
+    .bc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    .bc-field { border: 1.5px solid #e0e0e0; padding: 10px 14px; }
+    .bc-field label { font-size: 10px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px; }
+    .bc-field span { font-size: 14px; font-weight: 600; }
+    .btn-continue {
+      width: 100%; background: var(--yellow); color: var(--black);
+      border: none; padding: 14px; font-family: var(--font-body);
+      font-weight: 700; font-size: 14px; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .btn-continue:hover { background: #e0b000; }
+
+    /* ─── TICKER ─── */
+    .ticker {
+      background: var(--black); color: var(--white);
+      padding: 12px 0; overflow: hidden; white-space: nowrap;
+    }
+    .ticker-inner { display: inline-flex; gap: 40px; animation: ticker 20s linear infinite; }
+    .ticker-inner span { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; }
+    .ticker-inner span.dot { color: var(--yellow); }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ─── SERVICES ─── */
+    .services-section { padding: 80px 48px; }
+    .section-eyebrow { font-size: 11px; color: var(--mid); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+    .section-title { font-family: var(--font-head); font-size: clamp(32px, 4vw, 52px); font-weight: 800; line-height: 1.05; letter-spacing: -1.5px; }
+    .services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; margin-bottom: 40px; }
+    .services-desc { font-size: 15px; line-height: 1.7; color: #555; padding-top: 8px; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto auto;
+      gap: 10px;
+    }
+    .service-card {
+      position: relative; overflow: hidden; cursor: pointer;
+      background: #1a1a1a;
+    }
+    .service-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
+    }
+    .service-card img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(80%); transition: transform 0.4s ease, filter 0.4s ease; }
+    .service-card:hover img { transform: scale(1.05); filter: grayscale(20%); }
+    .service-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 18px; z-index: 1; }
+    .service-tag { background: var(--yellow); color: var(--black); font-size: 9px; font-weight: 700; padding: 2px 7px; letter-spacing: 1px; text-transform: uppercase; display: inline-block; margin-bottom: 6px; }
+    .service-name { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--white); line-height: 1.1; }
+    .service-desc-sm { font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 4px; }
+    .service-arrow { position: absolute; top: 14px; right: 14px; z-index: 1; background: rgba(255,255,255,0.15); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: white; }
+
+    /* card sizes */
+    .sc-large { grid-column: span 2; height: 280px; }
+    .sc-med { height: 280px; }
+    .sc-small { height: 200px; }
+    .sc-wide { grid-column: span 2; height: 200px; }
+
+    /* ─── WHY BEEZY ─── */
+    .why-section { padding: 80px 48px; background: var(--gray); }
+    .why-eyebrow { font-size: 11px; color: var(--mid); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+    .why-title { font-family: var(--font-head); font-size: clamp(32px, 4vw, 56px); font-weight: 800; line-height: 1.05; letter-spacing: -1.5px; max-width: 600px; margin-bottom: 48px; }
+    .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1.5px solid #ddd; }
+    .why-item { padding: 32px 32px 32px 0; border-right: 1.5px solid #ddd; }
+    .why-item:last-child { border-right: none; padding-right: 0; padding-left: 32px; }
+    .why-item:first-child { padding-left: 0; }
+    .why-icon { font-size: 20px; margin-bottom: 16px; color: var(--mid); }
+    .why-stat { font-family: var(--font-head); font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 4px; }
+    .why-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .why-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+    /* ─── BEEZY SHIELD ─── */
+    .shield-section {
+      background: var(--black); color: var(--white);
+      padding: 80px 48px;
+      display: grid; grid-template-columns: 1fr 420px; gap: 60px; align-items: center;
+    }
+    .shield-eyebrow { font-size: 11px; color: var(--mid); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; }
+    .shield-title { font-family: var(--font-head); font-size: clamp(40px, 5vw, 68px); font-weight: 800; line-height: 1.0; letter-spacing: -2px; margin-bottom: 20px; }
+    .shield-sub { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 32px; max-width: 440px; }
+    .shield-price { font-family: var(--font-head); font-size: 72px; font-weight: 800; color: var(--yellow); letter-spacing: -3px; line-height: 1; }
+    .shield-price-label { font-size: 12px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 28px; }
+    .shield-features { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+    .shield-feat { font-size: 13px; color: rgba(255,255,255,0.7); display: flex; align-items: flex-start; gap: 8px; }
+    .shield-feat::before { content: '✓'; color: var(--yellow); font-weight: 700; flex-shrink: 0; }
+
+    /* shield form */
+    .shield-form-card { background: var(--white); color: var(--black); padding: 32px; }
+    .sf-title { font-family: var(--font-head); font-weight: 800; font-size: 22px; margin-bottom: 6px; }
+    .sf-sub { font-size: 13px; color: var(--mid); margin-bottom: 24px; line-height: 1.5; }
+    .sf-input {
+      width: 100%; border: 1.5px solid #e0e0e0; padding: 12px 14px;
+      font-family: var(--font-body); font-size: 14px; outline: none;
+      margin-bottom: 12px; background: var(--white);
+    }
+    .sf-input:focus { border-color: var(--black); }
+    .btn-shield {
+      width: 100%; background: var(--yellow); color: var(--black);
+      border: none; padding: 14px; font-family: var(--font-body);
+      font-weight: 700; font-size: 14px; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px;
+    }
+    .btn-shield:hover { background: #e0b000; }
+
+    /* ─── PILOT ─── */
+    .pilot-section {
+      padding: 80px 48px;
+      display: grid; grid-template-columns: 1fr 440px; gap: 60px; align-items: center;
+    }
+    .pilot-eyebrow { font-size: 11px; color: var(--mid); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+    .pilot-title { font-family: var(--font-head); font-size: clamp(32px, 4vw, 52px); font-weight: 800; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 20px; }
+    .pilot-sub { font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 28px; max-width: 400px; }
+    .pilot-perks { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .pilot-perks li { font-size: 14px; display: flex; align-items: center; gap: 10px; }
+    .pilot-perks li::before { content: '→'; color: var(--yellow); font-weight: 700; font-size: 16px; }
+
+    .pilot-card { background: var(--gray); padding: 32px; border: 1.5px solid #e0e0e0; }
+    .pilot-card-eyebrow { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--mid); margin-bottom: 4px; }
+    .pilot-card-title { font-family: var(--font-head); font-weight: 800; font-size: 22px; margin-bottom: 6px; }
+    .pilot-card-sub { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 24px; }
+    .pilot-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pf-input {
+      width: 100%; border: 1.5px solid #ddd; padding: 12px 14px;
+      font-family: var(--font-body); font-size: 13px; outline: none;
+      background: var(--white); margin-bottom: 12px;
+    }
+    .pf-input:focus { border-color: var(--black); }
+    .pf-select {
+      width: 100%; border: 1.5px solid #ddd; padding: 12px 14px;
+      font-family: var(--font-body); font-size: 13px; outline: none;
+      background: var(--white); margin-bottom: 12px; appearance: none;
+    }
+    .btn-pilot {
+      background: var(--black); color: var(--white); border: none;
+      padding: 13px 20px; font-family: var(--font-body);
+      font-weight: 700; font-size: 13px; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .btn-pilot:hover { background: #222; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black); color: var(--white);
+      padding: 48px 48px 32px;
+    }
+    .footer-top { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start; margin-bottom: 40px; }
+    .footer-logo { font-family: var(--font-head); font-size: 64px; font-weight: 800; letter-spacing: -3px; line-height: 1; }
+    .footer-tagline { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 6px; text-transform: uppercase; letter-spacing: 1px; }
+    .footer-right { display: grid; grid-template-columns: auto auto; gap: 40px; }
+    .footer-col h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.8); text-decoration: none; margin-bottom: 8px; }
+    .footer-col a:hover { color: var(--yellow); }
+    .footer-contact { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+    .footer-contact a { color: var(--yellow); text-decoration: none; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.3); }
+    .made-with { font-size: 11px; color: rgba(255,255,255,0.3); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 48px 20px; }
+      .booking-card { display: none; }
+      .services-section, .why-section, .pilot-section { padding: 60px 20px; }
+      .services-header { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .sc-large, .sc-wide { grid-column: span 2; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .why-item { padding: 24px 0; border-right: none; border-bottom: 1.5px solid #ddd; }
+      .shield-section { grid-template-columns: 1fr; padding: 60px 20px; }
+      .pilot-section { grid-template-columns: 1fr; padding: 60px 20px; }
+      footer { padding: 40px 20px 24px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-logo { font-size: 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">BEEZY.</div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Beezy Shield</a></li>
+    <li><a href="#">Pilot</a></li>
+    <li><a href="#">Investors</a></li>
+  </ul>
+  <button class="btn-book">Book Now ↗</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p style="font-size:12px;color:var(--mid);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;">Home Services · Bengaluru · 2024</p>
+    <h1 class="hero-title">
+      Your trusted<br>
+      partner for <span class="highlight">home</span><br>
+      solutions.
+    </h1>
+    <p class="hero-sub">One app. Every home service. Verified pros at your door in under 60 minutes — delivered with speed &amp; care across Bengaluru.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary">Book a Pro ↗</button>
+      <button class="btn-secondary">Investor Deck ↗</button>
+    </div>
+    <div class="hero-stats">
+      <div><strong>₹1.5L Cr</strong><span>Market Size</span></div>
+      <div><strong>60 Min</strong><span>Guaranteed</span></div>
+      <div><strong>2M+</strong><span>Homes Served</span></div>
+    </div>
+  </div>
+
+  <div class="booking-card">
+    <div class="bc-header">
+      <div>
+        <div class="bc-label">Book a Pro — Step 1/3</div>
+      </div>
+      <div class="bc-step">STEP 1/3</div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <div class="bc-label">Service</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:4px;">
+        <div class="bc-service">Emergency Plumbing</div>
+        <span class="bc-live">LIVE</span>
+      </div>
+    </div>
+    <div class="bc-row">
+      <div class="bc-field">
+        <label>Date</label>
+        <span>22-04-2026</span>
+      </div>
+      <div class="bc-field">
+        <label>Slot</label>
+        <span>Morning (8–11 AM) ▾</span>
+      </div>
+    </div>
+    <button class="btn-continue">Continue →</button>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>Plumbing</span><span class="dot">◆</span>
+    <span>Verified Pros</span><span class="dot">◆</span>
+    <span>60-Min SLA</span><span class="dot">◆</span>
+    <span>Beezy Shield™</span><span class="dot">◆</span>
+    <span>Transparent Pricing</span><span class="dot">◆</span>
+    <span>Koramangala → HSR</span><span class="dot">◆</span>
+    <span>Plumbing</span><span class="dot">◆</span>
+    <span>Verified Pros</span><span class="dot">◆</span>
+    <span>60-Min SLA</span><span class="dot">◆</span>
+    <span>Beezy Shield™</span><span class="dot">◆</span>
+    <span>Transparent Pricing</span><span class="dot">◆</span>
+    <span>Koramangala → HSR</span><span class="dot">◆</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section">
+  <div class="services-header">
+    <div>
+      <div class="section-eyebrow">02 · Services</div>
+      <h2 class="section-title">One platform.<br>Every home need.</h2>
+    </div>
+    <p class="services-desc">We launch with emergency plumbing — the hardest wedge to crack — and expand service-by-service, only when NPS is above 75. No shortcuts on quality.</p>
+  </div>
+
+  <div class="services-grid">
+    <!-- Row 1 -->
+    <div class="service-card sc-large">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Emergency Plumbing" />
+      <div class="service-info">
+        <span class="service-tag">Live</span>
+        <div class="service-name">Emergency Plumbing</div>
+        <div class="service-desc-sm">60-min response, 175 certified plumbers</div>
+      </div>
+      <div class="service-arrow">↗</div>
+    </div>
+    <div class="service-card sc-med">
+      <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80" alt="Electricians" />
+      <div class="service-info">
+        <span class="service-tag">Next ▶</span>
+        <div class="service-name">Electricians</div>
+        <div class="service-desc-sm">Wiring, fittings, safety audits</div>
+      </div>
+      <div class="service-arrow">↗</div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="service-card sc-small">
+      <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80" alt="Elder Care" />
+      <div class="service-info">
+        <span class="service-tag">Planned</span>
+        <div class="service-name">Elder Care Companionship</div>
+      </div>
+    </div>
+    <div class="service-card sc-small">
+      <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80" alt="AC Service" />
+      <div class="service-info">
+        <span class="service-tag">Planned</span>
+        <div class="service-name">AC Service</div>
+        <div class="service-desc-sm">Gas top-up, servicing, deep clean</div>
+      </div>
+    </div>
+    <div class="service-card sc-small">
+      <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=600&q=80" alt="Painting" />
+      <div class="service-info">
+        <span class="service-tag">Planned</span>
+        <div class="service-name">Painting</div>
+        <div class="service-desc-sm">Interior & exterior, premium finishes</div>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="service-card sc-wide">
+      <img src="https://images.unsplash.com/photo-1632922267756-9b71242b1592?w=800&q=80" alt="Deep Cleaning" />
+      <div class="service-info">
+        <span class="service-tag">Next ▶</span>
+        <div class="service-name">Deep Cleaning</div>
+        <div class="service-desc-sm">Trained housekeepers, full-home deep cleans</div>
+      </div>
+      <div class="service-arrow">↗</div>
+    </div>
+    <div class="service-card sc-small">
+      <img src="https://images.unsplash.com/photo-1526951521990-620dc14c214b?w=600&q=80" alt="Pest Control" />
+      <div class="service-info">
+        <span class="service-tag">Planned</span>
+        <div class="service-name">Pest Control</div>
+        <div class="service-desc-sm">Kid &amp; pet friendly, 90-day warranty</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY BEEZY -->
+<section class="why-section">
+  <div class="why-eyebrow">03 · Why Beezy</div>
+  <h2 class="why-title">The anti-urban-company.<br>Built for trust, not for scale.</h2>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-icon">⏱</div>
+      <div class="why-stat">60 MIN</div>
+      <div class="why-label">Response Time</div>
+      <div class="why-desc">Guaranteed doorstep dispatch — every single time.</div>
+    </div>
+    <div class="why-item" style="padding-left:32px;">
+      <div class="why-icon">✓</div>
+      <div class="why-stat">100%</div>
+      <div class="why-label">Verified Vetted</div>
+      <div class="why-desc">Background + CTC certified pros, no exceptions.</div>
+    </div>
+    <div class="why-item" style="padding-left:32px;">
+      <div class="why-icon">◈</div>
+      <div class="why-stat">ONE APP</div>
+      <div class="why-label">Platform</div>
+      <div class="why-desc">Plumbers to painters — everything in one place.</div>
+    </div>
+    <div class="why-item" style="padding-left:32px;">
+      <div class="why-icon">◻</div>
+      <div class="why-stat">UPFRONT</div>
+      <div class="why-label">Pricing</div>
+      <div class="why-desc">Zero surprise bills. Ever.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BEEZY SHIELD -->
+<section class="shield-section">
+  <div class="shield-left">
+    <div class="shield-eyebrow">04 · Beezy Shield™</div>
+    <h2 class="shield-title">A home<br>that takes<br>care of itself.</h2>
+    <p class="shield-sub">One annual plan replaces every ad hoc repair call. Bundled visits, guaranteed same-day emergency response, predictable price — for the way Bengaluru actually lives.</p>
+    <div class="shield-price">₹2,999</div>
+    <div class="shield-price-label">/ Year</div>
+    <div class="shield-features">
+      <div class="shield-feat">4 plumber visits</div>
+      <div class="shield-feat">3 electrical safety checks</div>
+      <div class="shield-feat">1 annual deep clean</div>
+      <div class="shield-feat">Same-day emergency guarantee</div>
+      <div class="shield-feat">2× speed credits on add-ons</div>
+      <div class="shield-feat">Priority scheduling 24/7</div>
+    </div>
+  </div>
+
+  <div class="shield-form-card">
+    <div style="font-size:10px;color:var(--mid);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;">Reserve Now · Lock Your Price</div>
+    <div class="sf-title">Lock your price.</div>
+    <p class="sf-sub">Reserve now — no charge until Beezy Shield goes live in Q3 2026.</p>
+    <input class="sf-input" type="text" placeholder="Full name" />
+    <input class="sf-input" type="tel" placeholder="Phone" />
+    <input class="sf-input" type="email" placeholder="Email (optional)" />
+    <input class="sf-input" type="text" placeholder="Home address" />
+    <button class="btn-shield">Reserve My Shield →</button>
+  </div>
+</section>
+
+<!-- PILOT -->
+<section class="pilot-section">
+  <div class="pilot-left">
+    <div class="pilot-eyebrow">05 · Pilot Program</div>
+    <h2 class="pilot-title">Free for the<br>first 50 homes<br>in Koramangala.</h2>
+    <p class="pilot-sub">We're running a 30-day live pilot. Zero cost, zero commitment — help us shape the most trusted home services platform in India.</p>
+    <ul class="pilot-perks">
+      <li>Priority Plumbing dispatch</li>
+      <li>Free on-service reviews</li>
+      <li>Lifetime Shield discount for founding members</li>
+    </ul>
+  </div>
+
+  <div class="pilot-card">
+    <div class="pilot-card-eyebrow">30-Day Free Pilot · Koramangala First</div>
+    <div class="pilot-card-title">Join the Beezy Pilot.</div>
+    <p class="pilot-card-sub">First 50 homes get complimentary emergency plumbing + a priority slot for Beezy Shield™ at launch. No fees. No catch.</p>
+
+    <div class="pilot-row">
+      <input class="pf-input" type="text" placeholder="First Name" />
+      <input class="pf-input" type="text" placeholder="Last Name" />
+    </div>
+    <input class="pf-input" type="tel" placeholder="Phone" style="width:100%;" />
+    <div class="pilot-row">
+      <input class="pf-input" type="text" placeholder="Apartment Complex" />
+      <select class="pf-select">
+        <option>Emergency Plumbing</option>
+        <option>Deep Cleaning</option>
+        <option>Electrician</option>
+        <option>AC Service</option>
+      </select>
+    </div>
+    <button class="btn-pilot">Claim My Pilot Spot →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">BEEZY.</div>
+      <div class="footer-tagline">Bengaluru · 2026</div>
+      <div class="footer-contact" style="margin-top:20px;">
+        <a href="mailto:beezyassistance@gmail.com">beezyassistance@gmail.com</a>
+      </div>
+      <div class="footer-contact">Bengaluru, Karnataka</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <a href="#">Home</a>
+        <a href="#">Investors</a>
+        <a href="#">Services</a>
+        <a href="#">Beezy Shield</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Beezy Home Services · Made with care in India</span>
+    <span class="made-with">Made with Emergent</span>
+  </div>
+</footer>
+
+</body>
+</html>
